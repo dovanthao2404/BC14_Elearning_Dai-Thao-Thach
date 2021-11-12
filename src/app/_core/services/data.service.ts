@@ -19,6 +19,18 @@ export class DataService {
     return this.http.get(`${urlApi}/${url}`).pipe(catchError(this.handleError));
   }
 
+  post(url: string, data: any): Observable<any> {
+    return this.http.post(`${urlApi}/${url}`, data).pipe(catchError(this.handleError));
+  }
+
+  put(url: string, data: any): Observable<any> {
+    return this.http.put(`${urlApi}/${url}`, data).pipe(catchError(this.handleError));
+  }
+
+  delete(url: string): Observable<any> {
+    return this.http.delete(`${urlApi}/${url}`).pipe(catchError(this.handleError));
+  }
+
   handleError(error: any) {
     return throwError(() => error);
   }
