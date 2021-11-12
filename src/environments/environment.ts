@@ -2,8 +2,26 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+const GP_ID = "GP01";
 export const environment = {
-  production: false
+  production: false,
+
+  // Settings
+  token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJOT0RFSlMgMTgiLCJIZXRIYW5TdHJpbmciOiIwMy8wNS8yMDIyIiwiSGV0SGFuVGltZSI6IjE2NTE1MzYwMDAwMDAiLCJuYmYiOjE2MzUwOTQ4MDAsImV4cCI6MTY1MTY4MzYwMH0.WR33CYjpZsWp64GNg_ygfcOGHHNsT5DomeXdzWKxRyg",
+  tokenCybersoft: "TokenCybersoft",
+  userLogin: "USER_LOGIN",
+  authorization: "Authorization",
+  accessToken: "accessToken",
+
+  // API
+  urlApi: "http://elearningnew.cybersoft.edu.vn",
+
+  // Quản lý khóa hoc
+  getListCourse: `api/QuanLyKhoaHoc/LayDanhSachKhoaHoc?MaNhom=${GP_ID}`,
+
+  // Quản lý người dùng
+  getListUser: `api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=${GP_ID}`
+
 };
 
 /*
