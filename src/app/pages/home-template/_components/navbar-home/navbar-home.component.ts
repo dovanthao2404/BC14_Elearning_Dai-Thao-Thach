@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { environment } from '@environments/*';
+import { DataService } from '@services/data.service';
+import { ShareCourseService } from '@services/share-course.service';
 
 @Component({
   selector: 'app-navbar-home',
@@ -7,9 +10,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarHomeComponent implements OnInit {
 
-  constructor() { }
+  courseCategory: any;
+
+  constructor(private dataService: DataService, private shareCourseServices: ShareCourseService) { }
 
   ngOnInit(): void {
+    this.getCourseCategory();
+  }
+
+  getCourseCategory() {
+    this.dataService.get(environment.getCourseCategory).subscribe({
+      next: (data) => {
+        this.shareCourseServices.setCourseCategory = data;
+        this.shareCourseServices.getCourseCategory.subscribe(data => {
+          this.courseCategory = data;
+        });
+      },
+    });
   }
 
 }

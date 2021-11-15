@@ -12,13 +12,14 @@ export const environment = {
   userLogin: "USER_LOGIN",
   authorization: "Authorization",
   accessToken: "accessToken",
-
+  GP_ID,
   // API
-  urlApi: "http://elearningnew.cybersoft.edu.vn",
+  urlApi: "https://elearningnew.cybersoft.edu.vn",
 
   // Quản lý khóa hoc
   getListCourse: `api/QuanLyKhoaHoc/LayDanhSachKhoaHoc?MaNhom=${GP_ID}`,
-
+  getCourseCategory: `api/QuanLyKhoaHoc/LayDanhMucKhoaHoc`,
+  getCourseByCategory: `api/QuanLyKhoaHoc/LayKhoaHocTheoDanhMuc?`,
   // Quản lý người dùng
   getListUser: `api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=${GP_ID}`
 

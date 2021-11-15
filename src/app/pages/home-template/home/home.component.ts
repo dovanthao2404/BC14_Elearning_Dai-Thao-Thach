@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from 'src/app/_core/services/data.service';
+import { DataService } from '@services/data.service';
+import { ShareCourseService } from '@services/share-course.service';
 import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-home',
@@ -8,13 +9,21 @@ import { environment } from 'src/environments/environment';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private dataServices: DataService) { }
+  courseCategory: any;
+
+
+  constructor(private dataService: DataService, private shareCourse: ShareCourseService) { }
 
   ngOnInit(): void {
-    this.dataServices.get(environment.getListCourse).subscribe({
-      next: (data) => console.log(data),
-      error: (error) => console.log(error)
+    this.shareCourse.getCourseCategory.subscribe((data) => {
+      this.courseCategory = data;
     });
   }
+
+  ngAfterViewCheck() {
+    console.log("done");
+  }
+
+
 
 }
