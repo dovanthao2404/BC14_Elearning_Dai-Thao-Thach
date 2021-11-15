@@ -1,0 +1,46 @@
+
+<header class="header">
+  <nav class="navbar navbar-expand-xl">
+    <a class="navbar-brand" routerLink="/"
+      ><img src="https://i.imgur.com/lC22izJ.png" alt="" class="logo-cybersoft"
+    /></a>
+    <div class="d-flex">
+      <div class="login d-flex mx-2">
+        <button data-toggle="modal" data-target="#login" class="btn btn-login text-white">
+          Đăng nhập
+        </button>
+        <button data-toggle="modal" data-target="#login" class="btn btn-outline-primary">
+          Đăng ký
+        </button>
+
+      </div>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarScroll"
+        aria-controls="navbarScroll"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <mat-icon class="icon-menu">menu</mat-icon>
+      </button>
+    </div>
+
+    <div class="collapse navbar-collapse" id="navbarScroll">
+      <ul class="navbar-nav mr-auto my-2 my-lg-0 navbar-nav-scroll">
+        <li class="nav-item" *ngFor="let category of courseCategory">
+          <a
+            class="nav-link"
+            [routerLink]="category.maDanhMuc"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >{{ category.tenDanhMuc }}</a
+          >
+          <div class="line"></div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
