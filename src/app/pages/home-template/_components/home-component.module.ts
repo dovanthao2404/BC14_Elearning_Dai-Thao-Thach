@@ -5,7 +5,6 @@ import { DirectivesModule } from 'src/app/_core/shared/directives/directives.mod
 import { PipeModule } from 'src/app/_core/shared/pipe/pipe.module';
 import { FormsModule } from '@angular/forms';
 import { OurNewslettersComponent } from './our-newsletters/our-newsletters.component';
-import { NavbarHomeComponent } from './navbar-home/navbar-home.component';
 import { MaterialModule } from 'src/app/_core/shared/material/material.module';
 
 
@@ -16,8 +15,8 @@ import { MaterialModule } from 'src/app/_core/shared/material/material.module';
     CommonModule,
     DirectivesModule,
     PipeModule,
-    FormsModule
-    , MaterialModule,
+    FormsModule,
+    MaterialModule,
 
   ], exports: [
     CardCourseComponent,

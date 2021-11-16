@@ -1,8 +1,8 @@
 <div class="container">
   <div class="row">
-    <div *ngIf="error; else searchResults;">
-      <div class="alert alert-danger" role="alert">
-        {{ error.error }}
+    <div class="col-12" *ngIf="error; else searchResults;">
+      <div class=" alert alert-danger" role="alert">
+        Không tìm thấy khóa học với từ khóa <b>{{ error.error }}</b>!
       </div>
     </div>
     <ng-template #searchResults>

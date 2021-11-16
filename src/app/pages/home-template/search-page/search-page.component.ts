@@ -34,26 +34,20 @@ export class SearchPageComponent implements OnInit {
       this.dataService.get(`${environment.getListCourse}tenKhoaHoc=${this.ourNewsletters.searchKey}&MaNhom=${environment.GP_ID}`)
         .subscribe({
           next: (data) => {
-            const temp = { ...this.ourNewsletters };
-            this.ourNewsletters.title = `Đã tìm thấy ${data.length} khóa học với từ khóa ${temp.searchKey}`;
-            this.listCourse = data;
             this.error = null;
+            this.ourNewsletters.title = `Đã tìm thấy ${data.length} khóa học với từ khóa ${this.ourNewsletters.searchKey}`;
+            this.listCourse = data;
+            console.log(this.listCourse);
           },
           error: (err) => {
             this.ourNewsletters.title = "TÌM KHÓA HỌC CỦA BẠN";
-            this.error = err;
+            this.error = {
+              error: `${this.ourNewsletters.searchKey}`
+            };
           }
         });
     }
   }
 
-  ngOnDestroy(): void {
-    this.shareCourse.setOurNewsletters = {
-      title: 'TÌM KHÓA HỌC CỦA BẠN',
-      searchKey: '',
-      isSearch: true,
-      breadcrumb: ''
-    } as OurNewsletters;
-  }
 
 }

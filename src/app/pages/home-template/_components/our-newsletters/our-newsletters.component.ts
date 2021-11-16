@@ -12,7 +12,14 @@ export class OurNewslettersComponent implements OnInit {
 
   @ViewChild('formSearch') formSearch: any;
 
-  constructor(private shareCourseService: ShareCourseService, private router: Router) { }
+  constructor(private shareCourseService: ShareCourseService, private router: Router) {
+    this.shareCourseService.setOurNewsletters = {
+      title: 'TÌM KHÓA HỌC CỦA BẠN',
+      searchKey: '',
+      isSearch: true,
+      breadcrumb: ''
+    } as OurNewsletters;
+  }
 
   ngOnInit(): void {
     this.shareCourseService.getOurNewsletters.subscribe(res => {
@@ -27,9 +34,10 @@ export class OurNewslettersComponent implements OnInit {
       tempObj.searchKey = value.search;
       this.shareCourseService.setOurNewsletters = tempObj;
       this.router.navigate([`/search`]);
+    } else {
+      this.router.navigate([`/`]);
     }
+
   }
-
-
 
 }
