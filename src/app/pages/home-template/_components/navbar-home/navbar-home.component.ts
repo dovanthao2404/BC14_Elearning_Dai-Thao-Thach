@@ -6,13 +6,15 @@ import { ShareCourseService } from '@services/share-course.service';
 @Component({
   selector: 'app-navbar-home',
   templateUrl: './navbar-home.component.html',
-  styleUrls: ['./navbar-home.component.scss']
+  styleUrls: ['./navbar-home.component.scss'],
 })
 export class NavbarHomeComponent implements OnInit {
-
   courseCategory: any;
 
-  constructor(private dataService: DataService, private shareCourseServices: ShareCourseService) { }
+  constructor(
+    private dataService: DataService,
+    private shareCourseServices: ShareCourseService
+  ) {}
 
   ngOnInit(): void {
     this.getCourseCategory();
@@ -24,11 +26,10 @@ export class NavbarHomeComponent implements OnInit {
         // set dữ liêu vào shareCourseService
         this.shareCourseServices.setCourseCategory = data;
         // get dữ liệu từ shareCourseService
-        this.shareCourseServices.getCourseCategory.subscribe((data) => { this.courseCategory = data; });
+        this.shareCourseServices.getCourseCategory.subscribe((data) => {
+          this.courseCategory = data;
+        });
       },
     });
   }
-
-
-
 }
