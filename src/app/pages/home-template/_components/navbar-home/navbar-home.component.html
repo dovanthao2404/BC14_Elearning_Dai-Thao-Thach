@@ -39,6 +39,7 @@
           <a
             class="nav-link"
             routerLink="/category/{{ category.maDanhMuc }}"
+            [queryParams]="{ tenDanhMuc: category.tenDanhMuc }"
             routerLinkActive="active"
             [routerLinkActiveOptions]="{ exact: true }"
             >{{ category.tenDanhMuc }}</a

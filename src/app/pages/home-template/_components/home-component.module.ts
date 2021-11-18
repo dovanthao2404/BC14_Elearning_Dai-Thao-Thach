@@ -8,6 +8,7 @@ import { OurNewslettersComponent } from './our-newsletters/our-newsletters.compo
 import { MaterialModule } from 'src/app/_core/shared/material/material.module';
 
 
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [CardCourseComponent, OurNewslettersComponent,],
@@ -17,7 +18,7 @@ import { MaterialModule } from 'src/app/_core/shared/material/material.module';
     PipeModule,
     FormsModule,
     MaterialModule,
-
+    RouterModule
   ], exports: [
     CardCourseComponent,
     OurNewslettersComponent,

@@ -1,1 +1,11 @@
-<p>category-course works!</p>
+<div class="container">
+  <div class="row">
+    <div
+      *ngFor="let course of listCourse?.slice(0, 4)"
+      class="col-sm-6 col-lg-3 p-2"
+    >
+      <app-card-course routerLink="/hihi" [course]="course"></app-card-course>
+    </div>
+  </div>
+
+</div>

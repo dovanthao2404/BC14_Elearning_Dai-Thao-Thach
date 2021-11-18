@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { CategoryCourseRoutingModule } from './category-course-routing.module';
 import { CategoryCourseComponent } from './category-course.component';
+import { HomeComponentModule } from '../_components/home-component.module';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { CategoryCourseComponent } from './category-course.component';
   ],
   imports: [
     CommonModule,
-    CategoryCourseRoutingModule
+    CategoryCourseRoutingModule,
+    HomeComponentModule
   ]
 })
 export class CategoryCourseModule { }

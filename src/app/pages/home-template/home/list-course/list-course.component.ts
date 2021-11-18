@@ -23,7 +23,6 @@ export class ListCourseComponent implements OnInit {
 
   getListCourse(maDanhMuc: any) {
     this.dataService.get(`${environment.getCourseByCategory}maDanhMuc=${maDanhMuc}&MaNhom=${environment.GP_ID}`).subscribe((data) => {
-      console.log(data);
       this.listCourse = data;
     });
 

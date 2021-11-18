@@ -9,11 +9,11 @@ export class ShareCourseService {
 
   private courseCategory = new BehaviorSubject([]);
   private listCourse = new BehaviorSubject([]);
+
   private ourNewsletters = new BehaviorSubject({
     title: 'TÌM KHÓA HỌC CỦA BẠN',
-    searchKey: '',
     isSearch: true,
-    breadcrumb: ''
+    breadcrumb: []
   } as OurNewsletters);
 
   // get set method

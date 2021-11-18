@@ -23,10 +23,23 @@
           <ng-template #breadcrumb>
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb justify-content-center">
-                <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">
-                  Library
-                </li>
+                <li *ngFor="let item of this.ourNewsletters?.breadcrumb"
+                [ngClass]="{
+                  'active': item.active
+                }"
+                class="breadcrumb-item"
+                >
+
+                <span *ngIf="item.active; else notActive">
+                  {{item.name}}
+                </span>
+                <ng-template #notActive>
+                  <a routerLink="{{item.link}}">
+                    {{item.name}}
+                  </a>
+                </ng-template>
+
+              </li>
               </ol>
             </nav>
           </ng-template>
