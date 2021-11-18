@@ -8,6 +8,7 @@ import { DataService } from '@services/data.service';
   styleUrls: ['./list-course.component.scss']
 })
 export class ListCourseComponent implements OnInit {
+
   @Input() category: any;
 
   listCourse: any;
@@ -16,13 +17,13 @@ export class ListCourseComponent implements OnInit {
 
 
   ngOnInit(): void {
-    console.log(this.category);
-    this.getListCourse();
+    this.getListCourse(this.category.maDanhMuc);
   }
 
 
-  getListCourse() {
-    this.dataService.get(`${`${environment.getCourseByCategory}?MaNhom=${environment.GP_ID}`}maDanhMuc=${this.category.maDanhMuc}&MaNhom=${environment.GP_ID}`).subscribe((data) => {
+  getListCourse(maDanhMuc: any) {
+    this.dataService.get(`${environment.getCourseByCategory}maDanhMuc=${maDanhMuc}&MaNhom=${environment.GP_ID}`).subscribe((data) => {
+      console.log(data);
       this.listCourse = data;
     });
 

@@ -37,7 +37,6 @@ export class SearchPageComponent implements OnInit {
             this.error = null;
             this.ourNewsletters.title = `Đã tìm thấy ${data.length} khóa học với từ khóa ${this.ourNewsletters.searchKey}`;
             this.listCourse = data;
-            console.log(this.listCourse);
           },
           error: (err) => {
             this.ourNewsletters.title = "TÌM KHÓA HỌC CỦA BẠN";
