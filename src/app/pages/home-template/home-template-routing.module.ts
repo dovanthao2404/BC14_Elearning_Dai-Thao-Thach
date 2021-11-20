@@ -31,6 +31,10 @@ const routes: Routes = [
             (m) => m.CategoryCourseModule
           ),
       },
+      {
+        path: 'detail/:id',
+        loadChildren: () => import("./detail/detail.module").then(m => m.DetailModule)
+      }
     ],
   },
 ];
@@ -39,4 +43,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class HomeTemplateRoutingModule {}
+export class HomeTemplateRoutingModule { }

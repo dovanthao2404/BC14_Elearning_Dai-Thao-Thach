@@ -34,7 +34,7 @@
                   {{item.name}}
                 </span>
                 <ng-template #notActive>
-                  <a routerLink="{{item.link}}">
+                  <a routerLink="{{item.link}}" [queryParams]="item.queryParams || ''">
                     {{item.name}}
                   </a>
                 </ng-template>

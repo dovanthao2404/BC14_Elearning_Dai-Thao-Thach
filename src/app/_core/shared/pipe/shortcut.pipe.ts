@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class ShortcutPipe implements PipeTransform {
 
   transform(value: string, limit = 20): unknown {
-    return value.length > limit ? value.slice(0, limit) + "..." : value;
+    return value?.length > limit ? value.slice(0, limit) + "..." : value;
   }
 
 }

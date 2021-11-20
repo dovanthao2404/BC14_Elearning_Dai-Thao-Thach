@@ -24,6 +24,7 @@ export class SearchPageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    window.scrollTo(0, 0);
 
     this.handleGetListCourse();
   };

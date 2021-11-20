@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { environment } from '@environments/*';
 import { DataService } from '@services/data.service';
 
@@ -13,10 +14,12 @@ export class ListCourseComponent implements OnInit {
 
   listCourse: any;
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService, private router: Router) { }
 
 
   ngOnInit(): void {
+    window.scrollTo(0, 0);
+
     this.getListCourse(this.category.maDanhMuc);
   }
 
@@ -27,5 +30,6 @@ export class ListCourseComponent implements OnInit {
     });
 
   }
+
 
 }
