@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { environment } from '@environments/*';
 import { DataService } from '@services/data.service';
 import { ShareCourseService } from '@services/share-course.service';
@@ -10,11 +10,14 @@ import { ShareCourseService } from '@services/share-course.service';
 })
 export class NavbarHomeComponent implements OnInit {
   courseCategory: any;
+  isLogin: boolean = true;
+  error: any;
+  userLogin: any;
 
   constructor(
     private dataService: DataService,
     private shareCourseServices: ShareCourseService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.getCourseCategory();
@@ -31,5 +34,22 @@ export class NavbarHomeComponent implements OnInit {
         });
       },
     });
+  }
+
+  onSubmit(value: any) {
+
+    if (this.isLogin) {
+      console.log(value);
+      this.dataService.post("api/QuanLyNguoiDung/DangNhap", value).subscribe({
+        next: (data) => {
+          this.userLogin = this.userLogin;
+          this.shareCourseServices.setUserLogin = data;
+        },
+        error: (error) => {
+          console.log(error);
+          this.error = error;
+        }
+      });
+    }
   }
 }

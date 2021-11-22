@@ -14,7 +14,13 @@ export class CardCourseComponent implements OnInit {
   }
 
   onClickCourse() {
-    this.router.navigate([`/detail/${this.course.maKhoaHoc}`], { queryParams: { maDanhMucKhoaHoc: this.course.danhMucKhoaHoc.maDanhMucKhoahoc, tenDanhMucKhoaHoc: this.course.danhMucKhoaHoc.tenDanhMucKhoaHoc } });
+    this.router.navigate([`/detail/${this.course.maKhoaHoc}`],
+      {
+        queryParams: {
+          maDanhMucKhoaHoc: this.course.danhMucKhoaHoc.maDanhMucKhoahoc,
+          tenDanhMucKhoaHoc: this.course.danhMucKhoaHoc.tenDanhMucKhoaHoc
+        }
+      });
   }
 
 }

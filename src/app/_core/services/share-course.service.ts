@@ -16,6 +16,8 @@ export class ShareCourseService {
     breadcrumb: []
   } as OurNewsletters);
 
+  private userLogin = new BehaviorSubject(null);
+
   // get set method
   get getCourseCategory() {
     return this.courseCategory;
@@ -38,6 +40,14 @@ export class ShareCourseService {
   set setOurNewsletters(data: OurNewsletters) {
 
     this.ourNewsletters.next(data);
+  }
+
+  get getUserLogin() {
+    return this.userLogin;
+  }
+
+  set setUserLogin(value: any) {
+    this.userLogin.next(value);
   }
 
 

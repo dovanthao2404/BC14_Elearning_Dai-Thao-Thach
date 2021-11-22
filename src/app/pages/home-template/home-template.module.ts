@@ -9,6 +9,7 @@ import { MaterialModule } from 'src/app/_core/shared/material/material.module';
 import { PipeModule } from 'src/app/_core/shared/pipe/pipe.module';
 import { DirectivesModule } from 'src/app/_core/shared/directives/directives.module';
 import { HomeComponentModule } from './_components/home-component.module';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -24,7 +25,8 @@ import { HomeComponentModule } from './_components/home-component.module';
     MaterialModule,
     PipeModule,
     DirectivesModule,
-    HomeComponentModule
+    HomeComponentModule,
+    FormsModule
   ]
 })
 export class HomeTemplateModule { }
