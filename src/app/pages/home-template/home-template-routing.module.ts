@@ -30,6 +30,10 @@ const routes: Routes = [
       {
         path: 'detail/:id',
         loadChildren: () => import("./detail/detail.module").then(m => m.DetailModule)
+      },
+      {
+        path: "profile",
+        loadChildren: () => import("./profile/profile.module").then(m => m.ProfileModule)
       }
     ],
   },

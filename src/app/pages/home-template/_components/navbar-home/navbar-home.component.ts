@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router, RouterState } from '@angular/router';
 import { environment } from '@environments/*';
 import { DataService } from '@services/data.service';
 import { ShareCourseService } from '@services/share-course.service';
@@ -16,7 +17,8 @@ export class NavbarHomeComponent implements OnInit {
   // @ViewChild
   constructor(
     private dataService: DataService,
-    private shareCourseServices: ShareCourseService
+    private shareCourseServices: ShareCourseService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -44,6 +46,9 @@ export class NavbarHomeComponent implements OnInit {
 
   handleLogout() {
     this.shareCourseServices.setUserLogin = null;
+    if (this.router.url === "/profile") {
+      this.router.navigateByUrl("/");
+    }
   }
 
   onClickLogin() {

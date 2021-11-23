@@ -9,7 +9,7 @@ export class ApiInterceptor implements HttpInterceptor {
 
     let accessToken = "";
     if (localStorage.getItem(environment.userLogin)) {
-      accessToken = JSON.parse(localStorage.getItem(environment.userLogin) || "{}").accessToken;
+      accessToken = "Bearer " + JSON.parse(localStorage.getItem(environment.userLogin) || "{}").accessToken;
     }
 
     const apiRequest = req.clone({
