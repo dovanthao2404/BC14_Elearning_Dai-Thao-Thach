@@ -13,24 +13,22 @@ export class HomeComponent implements OnInit {
   courseCategory: any;
 
   constructor(
-    private shareCourse: ShareCourseService,
     private shareCourseService: ShareCourseService
   ) { }
 
   ngOnInit(): void {
+    this.shareCourseService.setIsLoading = true;
     this.shareCourseService.setOurNewsletters = {
       title: "TÌM KHÓA HỌC CỦA BẠN",
       isSearch: true,
       breadcrumb: []
     } as OurNewsletters;
 
-    this.shareCourse.getCourseCategory.subscribe((data) => {
+    this.shareCourseService.getCourseCategory.subscribe((data) => {
       this.courseCategory = data;
     });
   }
 
-  ngAfterViewCheck() {
-    console.log("done");
-  }
+
 
 }

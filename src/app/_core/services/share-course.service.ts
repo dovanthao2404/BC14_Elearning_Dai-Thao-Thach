@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { environment } from 'src/environments/environment.prod';
 import { OurNewsletters } from '../modal/OurNewsletters';
 
 @Injectable({
@@ -16,7 +17,9 @@ export class ShareCourseService {
     breadcrumb: []
   } as OurNewsletters);
 
-  private userLogin = new BehaviorSubject(null);
+  private isLoading = new BehaviorSubject(false);
+
+  private userLogin = new BehaviorSubject(JSON.parse(localStorage.getItem(environment.userLogin) || "null"));
 
   // get set method
   get getCourseCategory() {
@@ -47,7 +50,20 @@ export class ShareCourseService {
   }
 
   set setUserLogin(value: any) {
+    if (value) {
+      localStorage.setItem(environment.userLogin, JSON.stringify(value));
+    } else {
+      localStorage.removeItem(environment.userLogin);
+    }
     this.userLogin.next(value);
+  }
+
+  get getIsLoading() {
+    return this.isLoading;
+  }
+
+  set setIsLoading(value: boolean) {
+    this.isLoading.next(value);
   }
 
 

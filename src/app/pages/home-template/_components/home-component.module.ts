@@ -9,9 +9,11 @@ import { MaterialModule } from 'src/app/_core/shared/material/material.module';
 
 
 import { RouterModule } from '@angular/router';
+import { ModalComponent } from './navbar-home/modal/modal.component';
+import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
-  declarations: [CardCourseComponent, OurNewslettersComponent,],
+  declarations: [CardCourseComponent, OurNewslettersComponent, ModalComponent, LoadingComponent,],
   imports: [
     CommonModule,
     DirectivesModule,
@@ -22,6 +24,8 @@ import { RouterModule } from '@angular/router';
   ], exports: [
     CardCourseComponent,
     OurNewslettersComponent,
+    ModalComponent,
+    LoadingComponent
 
   ]
 })

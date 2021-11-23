@@ -27,6 +27,7 @@ export class CategoryCourseComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.shareCourseService.setIsLoading = true;
     window.scrollTo(0, 0);
     this.getCourseCategory();
     this.changeOurNewsletters();
@@ -86,9 +87,12 @@ export class CategoryCourseComponent implements OnInit {
               itemEnd: 8,
             };
             this.infoPagination = { ...tempPagination };
+            this.shareCourseService.setIsLoading = false;
           },
           error: (err) => {
             console.log(err);
+            this.shareCourseService.setIsLoading = false;
+
           },
         });
     });

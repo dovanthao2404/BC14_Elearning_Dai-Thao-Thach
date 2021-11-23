@@ -13,13 +13,19 @@ export class NavbarHomeComponent implements OnInit {
   isLogin: boolean = true;
   error: any;
   userLogin: any;
-
+  // @ViewChild
   constructor(
     private dataService: DataService,
     private shareCourseServices: ShareCourseService
   ) { }
 
   ngOnInit(): void {
+    this.shareCourseServices.getUserLogin.subscribe((result) => {
+      this.userLogin = result;
+      if (this.userLogin) {
+        this.isLogin = true;
+      }
+    });
     this.getCourseCategory();
   }
 
@@ -36,20 +42,15 @@ export class NavbarHomeComponent implements OnInit {
     });
   }
 
-  onSubmit(value: any) {
+  handleLogout() {
+    this.shareCourseServices.setUserLogin = null;
+  }
 
-    if (this.isLogin) {
-      console.log(value);
-      this.dataService.post("api/QuanLyNguoiDung/DangNhap", value).subscribe({
-        next: (data) => {
-          this.userLogin = this.userLogin;
-          this.shareCourseServices.setUserLogin = data;
-        },
-        error: (error) => {
-          console.log(error);
-          this.error = error;
-        }
-      });
-    }
+  onClickLogin() {
+    this.isLogin = true;
+  }
+  onClickRegister() {
+    this.isLogin = false;
+
   }
 }

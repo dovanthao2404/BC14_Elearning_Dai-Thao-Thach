@@ -1,24 +1,42 @@
+
+
 <header class="header">
   <nav class="navbar navbar-expand-xl">
     <a class="navbar-brand" routerLink="/"
       ><img src="https://i.imgur.com/lC22izJ.png" alt="" class="logo-cybersoft"
     /></a>
-    <div class="d-flex">
-      <div class="login d-flex mx-2">
-        <button
-          data-toggle="modal"
-          data-target="#login"
-          class="btn btn-login text-white"
-        >
-          Đăng nhập
-        </button>
-        <button
-          data-toggle="modal"
-          data-target="#login"
-          class="btn btn-outline-primary"
-        >
-          Đăng ký
-        </button>
+    <div class="d-flex align-items-center">
+      <div class="login mx-2">
+        <div class="d-flex align-items-center" *ngIf="!userLogin; else infoLogin">
+          <button
+            data-toggle="modal"
+            data-target="#login"
+            class="btn btn-login text-white"
+            (click)='onClickLogin()'
+          >
+            Đăng nhập
+          </button>
+          <button
+            data-toggle="modal"
+            data-target="#login"
+            class="btn btn-outline-primary"
+            (click)='onClickRegister()'
+          >
+            Đăng ký
+          </button>
+        </div>
+        <ng-template #infoLogin>
+          <div class="d-flex align-items-center position-relative">
+            <div class="info d-flex align-items-center" style="cursor: pointer;">
+              <img style="height:30px; width: 30px; border-radius: 50%;" src="https://picsum.photos/200/200" alt="" class="mr-2">
+              <h3 class="m-0 text-white">{{userLogin.hoTen}}</h3>
+            </div>
+            <div (click)="handleLogout()" class="logout d-flex align-items-center">
+              <h3 class="m-0 text-white">Đăng xuất</h3>
+            </div>
+
+          </div>
+        </ng-template>
       </div>
       <button
         class="navbar-toggler"
@@ -50,118 +68,4 @@
     </div>
   </nav>
 </header>
-
-<div
-  class="modal fade"
-  id="login"
-  tabindex="-1"
-  aria-labelledby="exampleModalLabel"
-  aria-hidden="true"
->
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 *ngIf="isLogin; else headerRegister">Đăng nhập</h2>
-        <ng-template #headerRegister>
-          <h2>Đăng ký</h2>
-        </ng-template>
-        <button
-          type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <form #formCommon="ngForm" (ngSubmit)="onSubmit(formCommon.value)">
-        <div class="modal-body">
-          <div *ngIf="isLogin; else formRegister">
-            <div class="form-group">
-              <label for="">Tài khoản: </label>
-              <input
-                type="text"
-                class="form-control"
-                placeholder=""
-                name="taiKhoan"
-                aria-describedby="helpId"
-                required
-                ngModel
-                #taiKhoan="ngModel"
-                minlength="6"
-                maxlength="24"
-              />
-              <div class="text-danger"
-              *ngIf="taiKhoan.errors && (taiKhoan.touched || taiKhoan.dirty)">
-                <div *ngIf="taiKhoan.errors?.['required']">Vui lòng nhập vào tài khoản</div>
-                <div *ngIf="taiKhoan.errors?.['minlength'] || taiKhoan.errors?.['maxlength']">Vui lòng nhập từ 6 đến 24 ký tự</div>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="">Mật khẩu:</label>
-              <input
-                type="text"
-                name="matKhau"
-                class="form-control"
-                placeholder=""
-                aria-describedby="helpId"
-                ngModel
-                #matKhau="ngModel"
-                required
-                minlength="6"
-                maxlength="32"
-              />
-              <div class="text-danger"
-              *ngIf="matKhau.errors && (matKhau.touched || matKhau.dirty)">
-                <div *ngIf="matKhau.errors?.['required']">Vui lòng nhập vào mật khẩu</div>
-                <div *ngIf="matKhau.errors?.['minlength'] || matKhau.errors?.['maxlength']">Vui lòng nhập từ 8 đến 32 ký tự</div>
-              </div>
-            </div>
-          </div>
-          <ng-template #formRegister>
-            <div class="form-group">
-              <label for="">Tài khoản: </label>
-              <input
-                type="text"
-                name=""
-                id=""
-                class="form-control"
-                placeholder=""
-                aria-describedby="helpId"
-
-              />
-            </div>
-            <div class="form-group">
-              <label for="">Mật khẩu:</label>
-              <input
-                type="text"
-                name=""
-                id=""
-                class="form-control"
-                placeholder=""
-                aria-describedby="helpId"
-
-              />
-            </div>
-          </ng-template>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">
-            Đóng
-          </button>
-          <button
-            *ngIf="isLogin; else btnRegister"
-            type="submit"
-            class="btn btn-primary"
-            [disabled]="formCommon.invalid"
-          >
-            Đăng Nhập
-          </button>
-          <ng-template #btnRegister>
-            <button type="submit" class="btn btn-primary">Đăng Ký</button>
-          </ng-template>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
+<app-modal [isLogin]="isLogin"></app-modal>

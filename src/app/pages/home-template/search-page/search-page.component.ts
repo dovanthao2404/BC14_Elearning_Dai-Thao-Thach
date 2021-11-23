@@ -17,6 +17,8 @@ export class SearchPageComponent implements OnInit {
 
   error: any;
 
+
+
   constructor(
     private shareCourseService: ShareCourseService,
     private dataService: DataService,
@@ -24,7 +26,10 @@ export class SearchPageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
+
     window.scrollTo(0, 0);
+    this.shareCourseService.setIsLoading = true;
 
     this.handleGetListCourse();
   };
@@ -51,6 +56,7 @@ export class SearchPageComponent implements OnInit {
     this.dataService.get(`${environment.getListCourse}tenKhoaHoc=${searchKey}&MaNhom=${environment.GP_ID}`)
       .subscribe({
         next: (data) => {
+          this.shareCourseService.setIsLoading = false;
 
           this.error = null;
 
@@ -67,6 +73,7 @@ export class SearchPageComponent implements OnInit {
           this.error = {
             error: `${searchKey}`
           };
+          this.shareCourseService.setIsLoading = false;
         }
       });
   }

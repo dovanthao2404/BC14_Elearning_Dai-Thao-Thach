@@ -26,7 +26,8 @@ import { FormsModule } from '@angular/forms';
     PipeModule,
     DirectivesModule,
     HomeComponentModule,
-    FormsModule
+    FormsModule,
+    HomeComponentModule
   ]
 })
 export class HomeTemplateModule { }

@@ -24,6 +24,7 @@ export class DetailComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.shareCourseService.setIsLoading = true;
     window.scrollTo(0, 0);
 
     this.getCourse();
@@ -41,6 +42,8 @@ export class DetailComponent implements OnInit {
             },
             error: (err) => {
               this.error = err;
+              this.shareCourseService.setIsLoading = false;
+
             }
           }
         );
@@ -51,6 +54,7 @@ export class DetailComponent implements OnInit {
     this.activatedRoute.queryParams.subscribe((params: any) => {
       this.setOurNewsletters(params);
       this.dataService.get(`${environment.getCourseByCategory}maDanhMuc=${params.maDanhMucKhoaHoc}&MaNhom=${environment.GP_ID}`).subscribe((data) => {
+        this.shareCourseService.setIsLoading = false;
 
         this.listCourse = data.filter((course: any) => course.maKhoaHoc !== this.course.maKhoaHoc).slice(0, 4);
 
