@@ -53,7 +53,7 @@ export class SearchPageComponent implements OnInit {
   }
 
   getListCourseBySearchKey(searchKey: string) {
-    this.dataService.get(`${environment.getListCourse}tenKhoaHoc=${searchKey}&MaNhom=${environment.GP_ID}`)
+    this.dataService.get(`${environment.getListCourseSearch}tenKhoaHoc=${searchKey}&MaNhom=${environment.GP_ID}`)
       .subscribe({
         next: (data) => {
           this.shareCourseService.setIsLoading = false;

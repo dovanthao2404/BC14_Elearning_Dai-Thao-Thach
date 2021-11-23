@@ -17,15 +17,60 @@ export const environment = {
   // API
   urlApi: "https://elearningnew.cybersoft.edu.vn",
 
+
+
   // Quản lý khóa hoc
-  getListCourse: `api/QuanLyKhoaHoc/LayDanhSachKhoaHoc?`,
+  getListCourseSearch: `api/QuanLyKhoaHoc/LayDanhSachKhoaHoc?`,
   getCourseCategory: `api/QuanLyKhoaHoc/LayDanhMucKhoaHoc`,
   getCourseByCategory: `api/QuanLyKhoaHoc/LayKhoaHocTheoDanhMuc?`,
 
+  // Quản lý khóa hoc
+  getListCourse: `api/QuanLyKhoaHoc/LayDanhSachKhoaHoc?MaNhom=${GP_ID}`,
+
+  //Them khoa hoc upload hinh
+  addCourseUploadImage: `api/QuanLyKhoaHoc/ThemKhoaHocUploadHinh`,
+
+  //Cap nhat khoa hoc upload hinh
+  editCourseUploadImage: `api/QuanLyKhoaHoc/CapNhatKhoaHocUpload`,
 
   // Quản lý người dùng
-  getListUser: `api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=${GP_ID}`
+  getListUser: `api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=${GP_ID}`,
 
+  // Dang nhap
+  login: `api/QuanLyNguoiDung/DangNhap`,
+
+  //Them nguoi dung
+  addUser: `api/QuanLyNguoiDung/ThemNguoiDung`,
+
+  //Cap nhat nguoi dung
+  editUser: `api/QuanLyNguoiDung/CapNhatThongTinNguoiDung`,
+
+  // Lay Danh muc khoa hoc
+  getCourseCatagory: `api/QuanLyKhoaHoc/LayDanhMucKhoaHoc`,
+
+  // Danh sach nguoi dung chua ghi danh
+  getListUserUnregisterd: `api/QuanLyNguoiDung/LayDanhSachNguoiDungChuaGhiDanh`,
+
+  //Ghi danh khoa hoc
+  getListUserRegisterd: `api/QuanLyNguoiDung/LayDanhSachHocVienKhoaHoc`,
+
+  //Danh sach cho xet duyet
+  getListUserPending: `api/QuanLyNguoiDung/LayDanhSachHocVienChoXetDuyet`,
+
+  //Ghi danh
+  registerCourse: `api/QuanLyKhoaHoc/GhiDanhKhoaHoc`,
+
+  //Huy dang ky
+  cancelRegister: `api/QuanLyKhoaHoc/HuyGhiDanh`,
+
+  //Danh sach khoa hoc chua ghi danh
+  getListCourseUnregisterd: `api/QuanLyNguoiDung/LayDanhSachKhoaHocChuaGhiDanh`,
+
+  //Danh sach khoa hoc cho xet duyet
+  getListCoursePending: `api/QuanLyNguoiDung/LayDanhSachKhoaHocChoXetDuyet`,
+
+  //Danh sach khoa hoc da xet duyet
+  getListCourseRegisterd: `api/QuanLyNguoiDung/LayDanhSachKhoaHocDaXetDuyet`,
 };
 
 /*
