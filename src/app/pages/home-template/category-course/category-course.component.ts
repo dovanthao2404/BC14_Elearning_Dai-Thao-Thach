@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { DataService } from '@services/data.service';
 import { ShareCourseService } from '@services/share-course.service';
 import { OurNewsletters } from 'src/app/_core/modal/OurNewsletters';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-category-course',
@@ -73,7 +74,7 @@ export class CategoryCourseComponent implements OnInit {
     this.activatedRoute.params.subscribe((result: any) => {
       this.dataService
         .get(
-          `api/QuanLyKhoaHoc/LayKhoaHocTheoDanhMuc?maDanhMuc=${result.maDanhMuc}&MaNhom=GP01`
+          `${environment.getCourseByCategory}${result.maDanhMuc}&MaNhom=GP01`
         )
         .subscribe({
           next: (data) => {
@@ -90,7 +91,6 @@ export class CategoryCourseComponent implements OnInit {
             this.shareCourseService.setIsLoading = false;
           },
           error: (err) => {
-            console.log(err);
             this.shareCourseService.setIsLoading = false;
 
           },

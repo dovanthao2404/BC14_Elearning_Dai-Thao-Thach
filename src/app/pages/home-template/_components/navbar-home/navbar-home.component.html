@@ -29,7 +29,7 @@
           <div class="d-flex align-items-center position-relative">
             <div routerLink="/profile" class="info d-flex align-items-center" style="cursor: pointer;">
               <img style="height:30px; width: 30px; border-radius: 50%;" src="https://picsum.photos/200/200" alt="" class="mr-2">
-              <h3 class="m-0 text-white">{{userLogin.hoTen}}</h3>
+              <h3 class="m-0 text-white">{{userLogin?.hoTen}}</h3>
             </div>
             <div (click)="handleLogout()" class="logout d-flex align-items-center">
               <h3 class="m-0 text-white">Đăng xuất</h3>
@@ -60,7 +60,7 @@
             [queryParams]="{ tenDanhMuc: category.tenDanhMuc }"
             routerLinkActive="active"
             [routerLinkActiveOptions]="{ exact: true }"
-            >{{ category.tenDanhMuc }}</a
+            >{{ category?.tenDanhMuc }}</a
           >
           <div class="line"></div>
         </li>

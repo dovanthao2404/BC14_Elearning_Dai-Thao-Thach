@@ -33,7 +33,7 @@ export class DetailComponent implements OnInit {
 
   getCourse() {
     this.activatedRoute.params.subscribe((params: any) => {
-      this.dataService.get(`api/QuanLyKhoaHoc/LayThongTinKhoaHoc?maKhoaHoc=${params.id}`)
+      this.dataService.get(`${environment.getInfoCourse}${params.id}`)
         .subscribe(
           {
             next: (data) => {

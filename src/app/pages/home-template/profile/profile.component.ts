@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '@services/data.service';
 import { ShareCourseService } from '@services/share-course.service';
 import { OurNewsletters } from 'src/app/_core/modal/OurNewsletters';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-profile',
@@ -28,7 +29,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataService
-      .post(`api/QuanLyNguoiDung/ThongTinNguoiDung`, null)
+      .post(`${environment.infoUserHome}`, null)
       .subscribe({
         next: (data: any) => {
           this.userEdit = data;

@@ -191,14 +191,22 @@
             role="tabpanel"
             aria-labelledby="profile-tab"
           >
-          <div *ngIf="!userEdit?.chiTietKhoaHocGhiDanh?.length ; else listMyCourse">
-            <div class="alert alert-danger">Bạn chưa có khóa học nào</div>
-          </div>
-          <ng-template #listMyCourse>
-
-          <app-card-course [course]="course" *ngFor="let course of userEdit?.chiTietKhoaHocGhiDanh"></app-card-course>
-
-          </ng-template>
+            <div
+              *ngIf="
+                !userEdit?.chiTietKhoaHocGhiDanh?.length;
+                else listMyCourse
+              "
+            >
+              <div class="alert alert-danger">Bạn chưa có khóa học nào</div>
+            </div>
+            <ng-template #listMyCourse>
+              <div
+                *ngFor="let course of userEdit?.chiTietKhoaHocGhiDanh"
+                class="col-sm-6 col-lg-3 p-2"
+              >
+                <app-card-course [course]="course"></app-card-course>
+              </div>
+            </ng-template>
           </div>
         </div>
       </div>
