@@ -12,7 +12,6 @@ export class ModalComponent implements OnInit {
 
   @Input("isLogin") isLogin: any;
   @ViewChild("btnClose") btnClose: any;
-
   errorLogin: any;
   errorRegister: any;
 
@@ -20,6 +19,8 @@ export class ModalComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+
   onSubmit(value: any) {
 
     if (this.isLogin) {
