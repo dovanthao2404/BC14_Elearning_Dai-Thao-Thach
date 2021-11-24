@@ -15,6 +15,7 @@ export class CourseManagementComponent implements OnInit {
   success: boolean = false;
   error: boolean = false;
   errMess: string = '';
+  keyword: string = '';
 
   totalLength: any;
   page: number = 1;
@@ -35,9 +36,10 @@ export class CourseManagementComponent implements OnInit {
 
   //Search khoa hoc
   searchCourse(keyword: string) {
+    this.keyword = this.domKeyword.nativeElement.value;
     this.data
       .get(
-        `api/QuanLyKhoaHoc/LayDanhSachKhoaHoc?tenKhoaHoc=${keyword}&MaNhom=GP01`
+        `api/QuanLyKhoaHoc/LayDanhSachKhoaHoc?tenKhoaHoc=${this.keyword}&MaNhom=GP01`
       )
       .subscribe((result) => (this.listCourse = result));
   }
