@@ -37,7 +37,7 @@ export class ModalComponent implements OnInit {
             icon: 'success',
             title: 'Bạn đã đăng ký thành công',
             showConfirmButton: false,
-            timer: 1500
+            timer: 2000
           });
         },
         error: (error) => {

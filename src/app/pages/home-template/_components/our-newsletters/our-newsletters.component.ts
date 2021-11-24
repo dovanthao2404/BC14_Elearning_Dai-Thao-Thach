@@ -9,7 +9,7 @@ import { OurNewsletters } from 'src/app/_core/modal/OurNewsletters';
 })
 export class OurNewslettersComponent implements OnInit {
   ourNewsletters = {} as OurNewsletters;
-
+  searchValue: string = '';
   @ViewChild('formSearch') formSearch: any;
 
   constructor(private shareCourseService: ShareCourseService, private router: Router) {
@@ -24,6 +24,7 @@ export class OurNewslettersComponent implements OnInit {
 
   handleSubmit(value: any) {
     if (value.search) {
+      this.searchValue = '';
       this.router.navigate([`/search`], {
         queryParams: { value: value.search }
       });
