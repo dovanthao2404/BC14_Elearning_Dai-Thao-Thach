@@ -1,7 +1,6 @@
 <div class="py-5">
   <div class="container">
-    <div class="row">
-      <div class="col-12">
+
         <ul class="nav nav-tabs" id="myTab" role="tablist">
           <li class="nav-item" role="presentation">
             <a
@@ -150,7 +149,7 @@
               <div class="form-group">
                 <label for="">Mật khẩu:</label>
                 <input
-                  type="text"
+                  type="password"
                   name="matKhau"
                   class="form-control"
                   placeholder=""
@@ -199,17 +198,17 @@
             >
               <div class="alert alert-danger">Bạn chưa có khóa học nào</div>
             </div>
+
             <ng-template #listMyCourse>
+              <div class="row">
               <div
                 *ngFor="let course of userEdit?.chiTietKhoaHocGhiDanh"
                 class="col-sm-6 col-lg-3 p-2"
               >
                 <app-card-course [course]="course"></app-card-course>
-              </div>
+              </div></div>
             </ng-template>
           </div>
         </div>
       </div>
-    </div>
-  </div>
 </div>

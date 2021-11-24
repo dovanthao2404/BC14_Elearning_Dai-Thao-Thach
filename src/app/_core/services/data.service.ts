@@ -18,9 +18,10 @@ export class DataService {
     return this.http.get(`${urlApi}/${url}`).pipe(catchError(this.handleError));
   }
 
-  post(url: string, data: any): Observable<any> {
+  post(url: string, data: any, options: any = {}): Observable<any> {
+
     return this.http
-      .post(`${urlApi}/${url}`, data)
+      .post(`${urlApi}/${url}`, data, options)
       .pipe(catchError(this.handleError));
   }
 

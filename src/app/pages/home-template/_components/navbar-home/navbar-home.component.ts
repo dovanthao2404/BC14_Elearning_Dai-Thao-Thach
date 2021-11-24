@@ -3,6 +3,7 @@ import { ActivatedRoute, Router, RouterState } from '@angular/router';
 import { environment } from '@environments/*';
 import { DataService } from '@services/data.service';
 import { ShareCourseService } from '@services/share-course.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-navbar-home',
@@ -45,10 +46,23 @@ export class NavbarHomeComponent implements OnInit {
   }
 
   handleLogout() {
-    this.shareCourseServices.setUserLogin = null;
-    if (this.router.url === "/profile") {
-      this.router.navigateByUrl("/");
-    }
+    Swal.fire({
+      title: 'Bạn có muốn đăng xuất không?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Có',
+      cancelButtonText: "Không"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.shareCourseServices.setUserLogin = null;
+        if (this.router.url === "/profile") {
+          this.router.navigateByUrl("/");
+        }
+      }
+    });
+
   }
 
   onClickLogin() {

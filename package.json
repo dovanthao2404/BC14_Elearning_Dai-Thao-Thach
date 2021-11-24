@@ -20,8 +20,7 @@
     "@angular/platform-browser": "~13.0.0",
     "@angular/platform-browser-dynamic": "~13.0.0",
     "@angular/router": "~13.0.0",
-    "bootstrap": "^4.6.1",
-    "jquery": "^3.6.0",
+    "@sweetalert2/ngx-sweetalert2": "^10.0.0",
     "angular-bootstrap-md": "^4.3.2",
     "bootstrap": "^4.6.1",
     "bootstrap-icons": "^1.7.0",
@@ -33,6 +32,8 @@
     "primeicons": "^5.0.0",
     "primeng": "^13.0.0-rc.2",
     "rxjs": "~7.4.0",
+    "sweetalert": "^2.1.2",
+    "sweetalert2": "^11.2.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
   },

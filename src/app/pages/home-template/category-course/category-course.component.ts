@@ -74,7 +74,7 @@ export class CategoryCourseComponent implements OnInit {
     this.activatedRoute.params.subscribe((result: any) => {
       this.dataService
         .get(
-          `${environment.getCourseByCategory}${result.maDanhMuc}&MaNhom=GP01`
+          `${environment.getCourseByCategory}maDanhMuc=${result.maDanhMuc}&MaNhom=GP01`
         )
         .subscribe({
           next: (data) => {

@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { DataService } from '@services/data.service';
 import { ShareCourseService } from '@services/share-course.service';
 import { OurNewsletters } from 'src/app/_core/modal/OurNewsletters';
 import { environment } from 'src/environments/environment';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-profile',
@@ -24,7 +26,8 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private shareCourseService: ShareCourseService,
-    private dataService: DataService
+    private dataService: DataService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -33,6 +36,7 @@ export class ProfileComponent implements OnInit {
       .subscribe({
         next: (data: any) => {
           this.userEdit = data;
+
         },
         error: (error: any) => {
           console.log(error);
@@ -64,13 +68,30 @@ export class ProfileComponent implements OnInit {
     } as OurNewsletters;
   }
   onSubmit(value: any) {
+
     value.maLoaiNguoiDung = this.userEdit.maLoaiNguoiDung;
     value.taiKhoan = this.userEdit.taiKhoan;
     value.maNhom = this.userEdit.maNhom;
-    this.dataService.put(`api/QuanLyNguoiDung/CapNhatThongTinNguoiDung`, value).subscribe((data) => {
-      data.accessToken = this.shareCourseService.getUserLogin.value.accessToken;
+    this.dataService.put(`api/QuanLyNguoiDung/CapNhatThongTinNguoiDung`, value).subscribe({
+      next: (data) => {
 
-      this.shareCourseService.setUserLogin = data;
+        if (data) {
+          Swal.fire({
+            title: 'Bạn đã cập nhật thành công!',
+            icon: 'success',
+            confirmButtonText: 'OK'
+          }).then((result) => {
+            data.accessToken = this.shareCourseService.getUserLogin.value.accessToken;
+            this.shareCourseService.setUserLogin = data;
+            this.router.navigateByUrl("/");
+          });
+        }
+
+      },
+      error: (error) => {
+
+        this.error = error;
+      }
     });
   }
 }

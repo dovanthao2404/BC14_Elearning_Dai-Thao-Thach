@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { DataService } from '@services/data.service';
 import { ShareCourseService } from '@services/share-course.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-modal',
@@ -22,21 +23,22 @@ export class ModalComponent implements OnInit {
   onSubmit(value: any) {
 
     if (this.isLogin) {
-      this.dataService.post("api/QuanLyNguoiDung/DangNhap", value).subscribe({
-        next: (data) => {
-          this.shareCourseServices.setUserLogin = data;
-          this.btnClose.nativeElement.click();
-        },
-        error: (error) => {
-          this.errorLogin = error;
-        }
-      });
+      this.loginAct(value);
     } else {
       value.maNhom = "GP01";
       this.dataService.post("api/QuanLyNguoiDung/DangKy", value).subscribe({
         next: (data) => {
-          this.shareCourseServices.setUserLogin = data;
+
+          this.loginAct(data);
+
           this.btnClose.nativeElement.click();
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Bạn đã đăng ký thành công',
+            showConfirmButton: false,
+            timer: 1500
+          });
         },
         error: (error) => {
           this.errorRegister = error;
@@ -45,5 +47,16 @@ export class ModalComponent implements OnInit {
     }
   }
 
+  loginAct(value: any) {
+    this.dataService.post("api/QuanLyNguoiDung/DangNhap", value).subscribe({
+      next: (data) => {
+        this.shareCourseServices.setUserLogin = data;
+        this.btnClose.nativeElement.click();
+      },
+      error: (error) => {
 
+        this.errorLogin = error;
+      }
+    });
+  }
 }
