@@ -14,7 +14,6 @@ export class AuthComponent implements OnInit {
   constructor(private data: DataService, private router: Router) { }
   ngOnInit(): void { }
   login(user: any) {
-    this.error = null;
     this.data.post(environment.login, user).subscribe({
       next: (result) => {
         if (result.maLoaiNguoiDung === 'GV') {
