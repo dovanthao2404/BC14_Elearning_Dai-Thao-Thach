@@ -18,6 +18,7 @@ export class UserManagerComponent implements OnInit {
   success: boolean = false;
   error: boolean = false;
   errMess: string = '';
+  keyword: any;
 
   constructor(private data: DataService) {}
 
@@ -33,9 +34,14 @@ export class UserManagerComponent implements OnInit {
     });
   }
   //Search User
+
   searchUser(keyword: any) {
+    this.keyword = this.domFieldSearch.nativeElement.value;
+    console.log(this.keyword);
     this.data
-      .get(`api/QuanLyNguoiDung/TimKiemNguoiDung?MaNhom=GP01&tuKhoa=${keyword}`)
+      .get(
+        `api/QuanLyNguoiDung/TimKiemNguoiDung?MaNhom=GP01&tuKhoa=${this.keyword}`
+      )
       .subscribe((result) => (this.listUser = result));
   }
 

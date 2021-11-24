@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-navbar-admin',
@@ -12,10 +13,19 @@ export class NavbarAdminComponent implements OnInit {
   ngOnInit(): void {}
 
   logOut() {
-    let confirm: boolean = window.confirm('Bạn có thực sự muốn đăng xuất');
-    if (confirm) {
-      localStorage.removeItem('USER_LOGIN');
-      this.router.navigate(['/auth']);
-    }
+    Swal.fire({
+      title: 'Bạn có muốn đăng xuất không?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Có',
+      cancelButtonText: 'Không',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        localStorage.removeItem('USER_LOGIN');
+        this.router.navigate(['/auth']);
+      }
+    });
   }
 }
