@@ -9,14 +9,25 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./auth.component.scss'],
 })
 export class AuthComponent implements OnInit {
-  constructor(private data: DataService, private router: Router) { }
 
+  error: any;
+  constructor(private data: DataService, private router: Router) { }
   ngOnInit(): void { }
   login(user: any) {
-    this.data.post(environment.login, user).subscribe((result) => {
-      if (result.maLoaiNguoiDung === 'GV') {
-        localStorage.setItem('USER_LOGIN', JSON.stringify(result));
-        this.router.navigate(['/admin']);
+    this.error = null;
+    this.data.post(environment.login, user).subscribe({
+      next: (result) => {
+        if (result.maLoaiNguoiDung === 'GV') {
+          this.error = null;
+          localStorage.setItem('USER_LOGIN', JSON.stringify(result));
+          this.router.navigate(['/admin']);
+        } else {
+          this.error = {
+            error: "Tài khoản hoặc mật khẩu không đúng"
+          };
+        }
+      }, error: (error) => {
+        this.error = error;
       }
     });
   }
