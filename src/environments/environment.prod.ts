@@ -17,12 +17,16 @@ export const environment = {
   // API
   urlApi: "https://elearningnew.cybersoft.edu.vn",
 
-
+  // Lấy thông tin khóa học
+  getInfoCourse: `api/QuanLyKhoaHoc/LayThongTinKhoaHoc?maKhoaHoc=`,
 
   // Quản lý khóa hoc
   getListCourseSearch: `api/QuanLyKhoaHoc/LayDanhSachKhoaHoc?`,
   getCourseCategory: `api/QuanLyKhoaHoc/LayDanhMucKhoaHoc`,
   getCourseByCategory: `api/QuanLyKhoaHoc/LayKhoaHocTheoDanhMuc?`,
+
+  // Thông tin người dung
+  infoUserHome: `api/QuanLyNguoiDung/ThongTinNguoiDung`,
 
   // Quản lý khóa hoc
   getListCourse: `api/QuanLyKhoaHoc/LayDanhSachKhoaHoc?MaNhom=${GP_ID}`,
