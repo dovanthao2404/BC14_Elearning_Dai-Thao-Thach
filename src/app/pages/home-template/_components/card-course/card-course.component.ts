@@ -37,9 +37,9 @@ export class CardCourseComponent implements OnInit {
           Swal.fire({
             position: 'center',
             icon: 'success',
-            title: 'Bạn đã hủy đăng ký thành công',
+            title: 'Bạn đã đăng ký thành công',
             showConfirmButton: false,
-            timer: 1000
+            timer: 1500
           }).then(() => {
             this.redirectPage();
           });
