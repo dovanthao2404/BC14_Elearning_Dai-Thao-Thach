@@ -72,7 +72,7 @@ export class ProfileComponent implements OnInit {
     value.maLoaiNguoiDung = this.userEdit.maLoaiNguoiDung;
     value.taiKhoan = this.userEdit.taiKhoan;
     value.maNhom = this.userEdit.maNhom;
-    this.dataService.put(`api/QuanLyNguoiDung/CapNhatThongTinNguoiDung`, value).subscribe({
+    this.dataService.put(`${environment.cancelRegister}`, value).subscribe({
       next: (data) => {
 
         if (data) {

@@ -30,7 +30,7 @@ export class CardCourseComponent implements OnInit {
     if (this.shareCourse.getUserLogin.value) {
       const taiKhoan = this.shareCourse.getUserLogin.value.taiKhoan;
       const maKhoaHoc = this.course.maKhoaHoc;
-      this.dataService.post("api/QuanLyKhoaHoc/DangKyKhoaHoc", { taiKhoan, maKhoaHoc }, {
+      this.dataService.post(`${environment.registerCourseHome}`, { taiKhoan, maKhoaHoc }, {
         responseType: 'text',
       }).subscribe({
         next: (result) => {
