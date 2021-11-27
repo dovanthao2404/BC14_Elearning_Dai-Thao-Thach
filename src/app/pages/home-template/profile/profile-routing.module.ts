@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ProfileGuard } from 'src/app/_core/guards/guardProfile.guard';
+import { ProfileGuard } from 'src/app/_guard/guardProfile.guard';
 import { ProfileComponent } from './profile.component';
 
 const routes: Routes = [

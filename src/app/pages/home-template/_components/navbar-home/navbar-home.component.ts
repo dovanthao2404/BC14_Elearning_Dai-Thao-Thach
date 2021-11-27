@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router, RouterState } from '@angular/router';
 import { environment } from '@environments/*';
 import { DataService } from '@services/data.service';
-import { ShareCourseService } from '@services/share-course.service';
+import { ShareService } from '@services/share.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -15,15 +15,15 @@ export class NavbarHomeComponent implements OnInit {
   isLogin: boolean = true;
   error: any;
   userLogin: any;
-  // @ViewChild
+
   constructor(
     private dataService: DataService,
-    private shareCourseServices: ShareCourseService,
+    private shareService: ShareService,
     private router: Router
   ) { }
 
   ngOnInit(): void {
-    this.shareCourseServices.getUserLogin.subscribe((result) => {
+    this.shareService.getUserLogin.subscribe((result) => {
       this.userLogin = result;
       if (this.userLogin) {
         this.isLogin = true;
@@ -35,10 +35,10 @@ export class NavbarHomeComponent implements OnInit {
   getCourseCategory() {
     this.dataService.get(environment.getCourseCategory).subscribe({
       next: (data) => {
-        // set dữ liêu vào shareCourseService
-        this.shareCourseServices.setCourseCategory = data;
-        // get dữ liệu từ shareCourseService
-        this.shareCourseServices.getCourseCategory.subscribe((data) => {
+        // set dữ liêu vào ShareService
+        this.shareService.setCourseCategory = data;
+        // get dữ liệu từ ShareService
+        this.shareService.getCourseCategory.subscribe((data) => {
           this.courseCategory = data;
         });
       },
@@ -56,7 +56,7 @@ export class NavbarHomeComponent implements OnInit {
       cancelButtonText: "Không"
     }).then((result) => {
       if (result.isConfirmed) {
-        this.shareCourseServices.setUserLogin = null;
+        this.shareService.setUserLogin = null;
         if (this.router.url === "/profile") {
           this.router.navigateByUrl("/");
         }

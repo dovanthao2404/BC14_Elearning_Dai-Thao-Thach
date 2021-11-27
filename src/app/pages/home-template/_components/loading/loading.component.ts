@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ShareCourseService } from '@services/share-course.service';
+import { ShareService } from '@services/share.service';
 
 @Component({
   selector: 'app-loading',
@@ -9,11 +9,11 @@ import { ShareCourseService } from '@services/share-course.service';
 export class LoadingComponent implements OnInit {
   isLoading = false;
 
-  constructor(private shareCourseService: ShareCourseService) { }
+  constructor(private shareService: ShareService) { }
 
   ngOnInit(): void {
 
-    this.shareCourseService.getIsLoading.subscribe((result) => {
+    this.shareService.getIsLoading.subscribe((result) => {
       this.isLoading = result;
     });
   }

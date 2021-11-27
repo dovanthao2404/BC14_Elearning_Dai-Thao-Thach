@@ -20,13 +20,20 @@ export const environment = {
   // Lấy thông tin khóa học
   getInfoCourse: `api/QuanLyKhoaHoc/LayThongTinKhoaHoc?maKhoaHoc=`,
 
-  // Quản lý khóa hoc
+  // Lay danh sach khoa hoc theo ma khoa hoc
   getListCourseSearch: `api/QuanLyKhoaHoc/LayDanhSachKhoaHoc?`,
+
+  // Lay danh muc khoa hoc
   getCourseCategory: `api/QuanLyKhoaHoc/LayDanhMucKhoaHoc`,
+
+  // Lay danh sach khoa hoc theo danh muc
   getCourseByCategory: `api/QuanLyKhoaHoc/LayKhoaHocTheoDanhMuc?`,
 
   // Thông tin người dung
   infoUserHome: `api/QuanLyNguoiDung/ThongTinNguoiDung`,
+
+  // dang ky khoc hoc home page
+  registerCourseHome: "api/QuanLyKhoaHoc/DangKyKhoaHoc",
 
   // Quản lý khóa hoc
   getListCourse: `api/QuanLyKhoaHoc/LayDanhSachKhoaHoc?MaNhom=${GP_ID}`,
@@ -42,6 +49,9 @@ export const environment = {
 
   // Dang nhap
   login: `api/QuanLyNguoiDung/DangNhap`,
+
+  // Dang ky
+  register: `api/QuanLyNguoiDung/DangKy`,
 
   //Them nguoi dung
   addUser: `api/QuanLyNguoiDung/ThemNguoiDung`,

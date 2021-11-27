@@ -6,7 +6,7 @@ import { OurNewsletters } from '../modal/OurNewsletters';
 @Injectable({
   providedIn: 'root'
 })
-export class ShareCourseService {
+export class ShareService {
 
   private courseCategory = new BehaviorSubject([]);
   private listCourse = new BehaviorSubject([]);
@@ -65,8 +65,6 @@ export class ShareCourseService {
   set setIsLoading(value: boolean) {
     this.isLoading.next(value);
   }
-
-
 
   constructor() { }
 

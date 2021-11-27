@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ShareCourseService } from '@services/share-course.service';
 
 @Component({
   selector: 'app-home-template',
@@ -10,7 +9,7 @@ import { ShareCourseService } from '@services/share-course.service';
 export class HomeTemplateComponent implements OnInit {
 
 
-  constructor(private shareCourse: ShareCourseService) { }
+  constructor() { }
 
   ngOnInit(): void {
 

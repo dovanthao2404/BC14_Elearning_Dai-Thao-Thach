@@ -50,6 +50,9 @@ export const environment = {
   // Dang nhap
   login: `api/QuanLyNguoiDung/DangNhap`,
 
+  // Dang ky
+  register: `api/QuanLyNguoiDung/DangKy`,
+
   //Them nguoi dung
   addUser: `api/QuanLyNguoiDung/ThemNguoiDung`,
 

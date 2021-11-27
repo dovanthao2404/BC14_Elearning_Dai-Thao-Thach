@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataService } from '@services/data.service';
-import { ShareCourseService } from '@services/share-course.service';
+import { ShareService } from '@services/share.service';
 import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
 
@@ -13,7 +13,7 @@ import Swal from 'sweetalert2';
 export class CardCourseComponent implements OnInit {
   @Input() course: any;
   register: boolean = true;
-  constructor(private router: Router, private dataService: DataService, private shareCourse: ShareCourseService) { }
+  constructor(private router: Router, private dataService: DataService, private shareService: ShareService) { }
 
   ngOnInit(): void {
     if (Object.keys(this.course).length === 2) {
@@ -27,8 +27,8 @@ export class CardCourseComponent implements OnInit {
   onClickCourse() {
 
 
-    if (this.shareCourse.getUserLogin.value) {
-      const taiKhoan = this.shareCourse.getUserLogin.value.taiKhoan;
+    if (this.shareService.getUserLogin.value) {
+      const taiKhoan = this.shareService.getUserLogin.value.taiKhoan;
       const maKhoaHoc = this.course.maKhoaHoc;
       this.dataService.post(`${environment.registerCourseHome}`, { taiKhoan, maKhoaHoc }, {
         responseType: 'text',
@@ -80,7 +80,7 @@ export class CardCourseComponent implements OnInit {
       cancelButtonText: "Không"
     }).then((result) => {
       if (result.isConfirmed) {
-        const taiKhoan = this.shareCourse.getUserLogin.value.taiKhoan;
+        const taiKhoan = this.shareService.getUserLogin.value.taiKhoan;
         const maKhoaHoc = this.course.maKhoaHoc;
         this.dataService.post("api/QuanLyKhoaHoc/HuyGhiDanh", { taiKhoan, maKhoaHoc }, {
           responseType: 'text',

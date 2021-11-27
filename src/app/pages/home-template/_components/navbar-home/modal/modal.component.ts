@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { DataService } from '@services/data.service';
-import { ShareCourseService } from '@services/share-course.service';
+import { ShareService } from '@services/share.service';
+import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -15,11 +16,10 @@ export class ModalComponent implements OnInit {
   errorLogin: any;
   errorRegister: any;
 
-  constructor(private dataService: DataService, private shareCourseServices: ShareCourseService) { }
+  constructor(private dataService: DataService, private shareService: ShareService) { }
 
   ngOnInit(): void {
   }
-
 
   onSubmit(value: any) {
 
@@ -27,7 +27,7 @@ export class ModalComponent implements OnInit {
       this.loginAct(value);
     } else {
       value.maNhom = "GP01";
-      this.dataService.post("api/QuanLyNguoiDung/DangKy", value).subscribe({
+      this.dataService.post(`${environment.register}`, value).subscribe({
         next: (data) => {
 
           this.loginAct(data);
@@ -49,9 +49,9 @@ export class ModalComponent implements OnInit {
   }
 
   loginAct(value: any) {
-    this.dataService.post("api/QuanLyNguoiDung/DangNhap", value).subscribe({
+    this.dataService.post(`${environment.login}`, value).subscribe({
       next: (data) => {
-        this.shareCourseServices.setUserLogin = data;
+        this.shareService.setUserLogin = data;
         this.btnClose.nativeElement.click();
       },
       error: (error) => {

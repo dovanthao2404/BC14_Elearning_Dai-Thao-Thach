@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from '@environments/*';
 import { DataService } from '@services/data.service';
-import { ShareCourseService } from '@services/share-course.service';
+import { ShareService } from '@services/share.service';
 import { OurNewsletters } from 'src/app/_core/modal/OurNewsletters';
 
 @Component({
@@ -20,11 +20,11 @@ export class DetailComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private dataService: DataService,
-    private shareCourseService: ShareCourseService,
+    private shareService: ShareService,
   ) { }
 
   ngOnInit(): void {
-    this.shareCourseService.setIsLoading = true;
+    this.shareService.setIsLoading = true;
     window.scrollTo(0, 0);
 
     this.getCourse();
@@ -42,7 +42,7 @@ export class DetailComponent implements OnInit {
             },
             error: (err) => {
               this.error = err;
-              this.shareCourseService.setIsLoading = false;
+              this.shareService.setIsLoading = false;
 
             }
           }
@@ -54,17 +54,15 @@ export class DetailComponent implements OnInit {
     this.activatedRoute.queryParams.subscribe((params: any) => {
       this.setOurNewsletters(params);
       this.dataService.get(`${environment.getCourseByCategory}maDanhMuc=${params.maDanhMucKhoaHoc}&MaNhom=${environment.GP_ID}`).subscribe((data) => {
-        this.shareCourseService.setIsLoading = false;
-
-        this.listCourse = data.filter((course: any) => course.maKhoaHoc !== this.course.maKhoaHoc).slice(0, 4);
-
+        this.shareService.setIsLoading = false;
+        this.listCourse = this.shuffle(data.filter((course: any) => course.maKhoaHoc !== this.course.maKhoaHoc)).slice(0, 4);
       });
 
     });
   }
 
   setOurNewsletters(params: any) {
-    this.shareCourseService.setOurNewsletters = {
+    this.shareService.setOurNewsletters = {
       title: params.tenDanhMucKhoaHoc,
       isSearch: false,
       breadcrumb: [
@@ -90,6 +88,23 @@ export class DetailComponent implements OnInit {
     } as OurNewsletters;
   }
 
+  shuffle(array: any) {
+    let currentIndex = array.length, randomIndex;
+
+    // While there remain elements to shuffle...
+    while (currentIndex != 0) {
+
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+    }
+
+    return array;
+  }
 
 
 }

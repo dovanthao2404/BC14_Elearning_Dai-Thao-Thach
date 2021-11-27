@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { ShareCourseService } from '@services/share-course.service';
+import { ShareService } from '@services/share.service';
 import { OurNewsletters } from 'src/app/_core/modal/OurNewsletters';
 @Component({
   selector: 'app-our-newsletters',
@@ -12,11 +12,11 @@ export class OurNewslettersComponent implements OnInit {
   searchValue: string = '';
   @ViewChild('formSearch') formSearch: any;
 
-  constructor(private shareCourseService: ShareCourseService, private router: Router) {
+  constructor(private shareService: ShareService, private router: Router) {
   }
 
   ngOnInit(): void {
-    this.shareCourseService.getOurNewsletters.subscribe(res => {
+    this.shareService.getOurNewsletters.subscribe(res => {
       this.ourNewsletters = res;
     });
 

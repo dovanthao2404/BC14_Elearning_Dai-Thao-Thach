@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataService } from '@services/data.service';
-import { ShareCourseService } from '@services/share-course.service';
+import { ShareService } from '@services/share.service';
 import { OurNewsletters } from 'src/app/_core/modal/OurNewsletters';
 import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
@@ -25,7 +25,7 @@ export class ProfileComponent implements OnInit {
   };
 
   constructor(
-    private shareCourseService: ShareCourseService,
+    private shareService: ShareService,
     private dataService: DataService,
     private router: Router
   ) { }
@@ -61,7 +61,7 @@ export class ProfileComponent implements OnInit {
   }
 
   setOurNewsletters(title: string, isSearch: boolean, breadcrumb: Array<any>) {
-    this.shareCourseService.setOurNewsletters = {
+    this.shareService.setOurNewsletters = {
       title,
       isSearch,
       breadcrumb,
@@ -72,7 +72,7 @@ export class ProfileComponent implements OnInit {
     value.maLoaiNguoiDung = this.userEdit.maLoaiNguoiDung;
     value.taiKhoan = this.userEdit.taiKhoan;
     value.maNhom = this.userEdit.maNhom;
-    this.dataService.put(`${environment.cancelRegister}`, value).subscribe({
+    this.dataService.put(`${environment.editUser}`, value).subscribe({
       next: (data) => {
 
         if (data) {
@@ -81,8 +81,8 @@ export class ProfileComponent implements OnInit {
             icon: 'success',
             confirmButtonText: 'OK'
           }).then((result) => {
-            data.accessToken = this.shareCourseService.getUserLogin.value.accessToken;
-            this.shareCourseService.setUserLogin = data;
+            data.accessToken = this.shareService.getUserLogin.value.accessToken;
+            this.shareService.setUserLogin = data;
             this.router.navigateByUrl("/");
           });
         }

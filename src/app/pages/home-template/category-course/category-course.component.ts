@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DataService } from '@services/data.service';
-import { ShareCourseService } from '@services/share-course.service';
+import { ShareService } from '@services/share.service';
 import { OurNewsletters } from 'src/app/_core/modal/OurNewsletters';
 import { environment } from 'src/environments/environment.prod';
 
@@ -24,11 +24,11 @@ export class CategoryCourseComponent implements OnInit {
     private dataService: DataService,
 
     // share course
-    private shareCourseService: ShareCourseService
+    private shareService: ShareService
   ) { }
 
   ngOnInit(): void {
-    this.shareCourseService.setIsLoading = true;
+    this.shareService.setIsLoading = true;
     window.scrollTo(0, 0);
     this.getCourseCategory();
     this.changeOurNewsletters();
@@ -61,7 +61,7 @@ export class CategoryCourseComponent implements OnInit {
 
   // set our newsletters
   setOurNewsletters(title: string, isSearch: boolean, breadcrumb: Array<any>) {
-    this.shareCourseService.setOurNewsletters =
+    this.shareService.setOurNewsletters =
       {
         title,
         isSearch,
@@ -88,10 +88,10 @@ export class CategoryCourseComponent implements OnInit {
               itemEnd: 8,
             };
             this.infoPagination = { ...tempPagination };
-            this.shareCourseService.setIsLoading = false;
+            this.shareService.setIsLoading = false;
           },
           error: (err) => {
-            this.shareCourseService.setIsLoading = false;
+            this.shareService.setIsLoading = false;
 
           },
         });

@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from '@environments/*';
 import { DataService } from '@services/data.service';
-import { ShareCourseService } from '@services/share-course.service';
+import { ShareService } from '@services/share.service';
 
 @Component({
   selector: 'app-list-course',
@@ -15,7 +15,7 @@ export class ListCourseComponent implements OnInit {
 
   listCourse: any;
 
-  constructor(private dataService: DataService, private router: Router, private shareCourseService: ShareCourseService) { }
+  constructor(private dataService: DataService, private router: Router, private shareService: ShareService) { }
 
 
   ngOnInit(): void {
@@ -30,7 +30,7 @@ export class ListCourseComponent implements OnInit {
     this.dataService.get(`${environment.getCourseByCategory}maDanhMuc=${maDanhMuc}&MaNhom=${environment.GP_ID}`).subscribe((data) => {
       this.listCourse = data;
       if (this.category.maDanhMuc === "TuDuy") {
-        this.shareCourseService.setIsLoading = false;
+        this.shareService.setIsLoading = false;
       }
     });
 
