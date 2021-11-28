@@ -1,5 +1,3 @@
-# AngularProject
-
 ## Link Deploy
 
 `https://angular-project-elearning.surge.sh/`
