@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ShareService } from '@services/share.service';
 import { DataService } from 'src/app/_core/services/data.service';
 import { environment } from 'src/environments/environment';
 
@@ -11,7 +12,7 @@ import { environment } from 'src/environments/environment';
 export class AuthComponent implements OnInit {
 
   error: any;
-  constructor(private data: DataService, private router: Router) { }
+  constructor(private data: DataService, private router: Router, private shareService: ShareService) { }
   ngOnInit(): void { }
   login(user: any) {
     this.data.post(environment.login, user).subscribe({
@@ -20,6 +21,8 @@ export class AuthComponent implements OnInit {
           this.error = null;
           localStorage.setItem('USER_LOGIN', JSON.stringify(result));
           this.router.navigate(['/admin']);
+          this.shareService.setUserLogin = result;
+          this.getInfoUser();
         } else {
           this.error = {
             error: "Tài khoản hoặc mật khẩu không đúng"
@@ -29,5 +32,13 @@ export class AuthComponent implements OnInit {
         this.error = error;
       }
     });
+  }
+
+  getInfoUser() {
+    this.data
+      .post(`${environment.infoUserHome}`, null).subscribe((result: any) => {
+        const listCourse = [...result.chiTietKhoaHocGhiDanh];
+        this.shareService.setInfoUser = listCourse;
+      });
   }
 }
