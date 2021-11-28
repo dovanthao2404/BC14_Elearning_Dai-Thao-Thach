@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from 'src/app/_core/services/data.service';
-import { environment } from 'src/environments/environment';
+import { ShareService } from '@services/share.service';
+import { OurNewsletters } from 'src/app/_core/modal/OurNewsletters';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -8,13 +8,25 @@ import { environment } from 'src/environments/environment';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private dataServices: DataService) { }
+  courseCategory: any;
+
+  constructor(
+    private shareService: ShareService
+  ) { }
 
   ngOnInit(): void {
-    this.dataServices.get(environment.getListCourse).subscribe({
-      next: (data) => console.log(data),
-      error: (error) => console.log(error)
+    this.shareService.setIsLoading = true;
+    this.shareService.setOurNewsletters = {
+      title: "TÌM KHÓA HỌC CỦA BẠN",
+      isSearch: true,
+      breadcrumb: []
+    } as OurNewsletters;
+
+    this.shareService.getCourseCategory.subscribe((data) => {
+      this.courseCategory = data;
     });
   }
+
+
 
 }
