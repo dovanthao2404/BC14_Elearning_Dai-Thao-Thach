@@ -14,10 +14,13 @@ export class CardCourseComponent implements OnInit {
   @Input() course: any;
   notRegisterCourse: boolean = false;
   register: boolean = true;
-  constructor(private router: Router, private dataService: DataService, private shareService: ShareService) { }
+  isProfile: boolean = false;
+
+
+  constructor(private router: Router, private dataService: DataService, private shareService: ShareService,
+  ) { }
 
   ngOnInit(): void {
-    // Kiem tra khoa hoc da duoc nguoid dung dang ky chua
     this.shareService.getInfoUser.subscribe((result: any) => {
       let flag = false;
       if (result) {
@@ -34,51 +37,25 @@ export class CardCourseComponent implements OnInit {
         this.notRegisterCourse = false;
       }
     });
-
     if (Object.keys(this.course).length === 2) {
       this.register = false;
       this.dataService.get(`${environment.getInfoCourse}${this.course?.maKhoaHoc}`).subscribe((result) => {
         this.course = result;
       });
     }
+
+    this.getPath();
+
   }
 
-  onClickCourse() {
-
-
-    if (this.shareService.getUserLogin.value) {
-      const taiKhoan = this.shareService.getUserLogin.value.taiKhoan;
-      const maKhoaHoc = this.course.maKhoaHoc;
-      this.dataService.post(`${environment.registerCourseHome}`, { taiKhoan, maKhoaHoc }, {
-        responseType: 'text',
-      }).subscribe({
-        next: (result) => {
-          Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Bạn đã đăng ký thành công',
-            showConfirmButton: false,
-            timer: 2000
-          }).then(() => {
-            this.getInfoUser();
-
-            this.redirectPage();
-          });
-        },
-        error: () => {
-          this.redirectPage();
-        }
-      });
-
-
-    } else {
-      Swal.fire({
-        title: 'Vui lòng đăng nhập',
-        icon: 'info',
-        confirmButtonText: 'OK'
-      });
+  getPath() {
+    const url = this.router.url;
+    if (url === "/profile") {
+      this.isProfile = true;
     }
   }
+
+
 
   redirectPage() {
     this.router.navigate([`/detail/${this.course.maKhoaHoc}`],

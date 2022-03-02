@@ -14,15 +14,13 @@
   </div>
   <div class="card-footer">
     <div class="d-flex justify-content-between align-items-center">
-      <p class="m-0">{{ course?.ngayTao }}</p>
+      <p class="m-0">{{ course?.ngayTao | formatDate}}</p>
     <div>
-      <button *ngIf="notRegisterCourse && register; else login " class="btn btn-secondary" (click)="goDetail()">Chi tiết</button>
-      <ng-template #login>
-      <button *ngIf="register; else btnCancel" class="btn btn-primary" (click)="onClickCourse()">Đăng ký</button>
-      <ng-template #btnCancel>
-        <button class="btn btn-danger" (click)="onClickCancel()">Hủy</button>
+      <button *ngIf="notRegisterCourse && register && isProfile; else btnDetail" class="btn btn-danger" (click)="onClickCancel()">Hủy</button>
+
+      <ng-template #btnDetail>
+        <button class="btn btn-secondary" (click)="goDetail()">Chi tiết</button>
       </ng-template>
-    </ng-template>
     </div>
     </div>
   </div>

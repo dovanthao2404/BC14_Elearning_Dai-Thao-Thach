@@ -4,6 +4,7 @@ import { environment } from '@environments/*';
 import { DataService } from '@services/data.service';
 import { ShareService } from '@services/share.service';
 import { OurNewsletters } from 'src/app/_core/modal/OurNewsletters';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-detail',
@@ -14,7 +15,7 @@ export class DetailComponent implements OnInit {
 
   course: any;
   listCourse: any;
-
+  notRegisterCourse: boolean = true;
   error = null;
 
   constructor(
@@ -24,20 +25,45 @@ export class DetailComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
+
     this.shareService.setIsLoading = true;
     window.scrollTo(0, 0);
 
     this.getCourse();
+
   }
+
+  checkCourseRegister = (data: any) => {
+
+    this.shareService.getInfoUser.subscribe((result: any) => {
+      let flag = false;
+      if (result) {
+        for (let i = 0; i < result.length; i++) {
+          if (result[i].maKhoaHoc == data.maKhoaHoc) {
+            flag = true;
+            break;
+          }
+        }
+      }
+      if (flag) {
+        this.notRegisterCourse = true;
+      } else {
+        this.notRegisterCourse = false;
+      }
+    });
+  };
 
 
   getCourse() {
     this.activatedRoute.params.subscribe((params: any) => {
+
       this.dataService.get(`${environment.getInfoCourse}${params.id}`)
         .subscribe(
           {
             next: (data) => {
               this.course = data;
+              this.checkCourseRegister(data);
               this.getListCourse();
             },
             error: (err) => {
@@ -59,6 +85,41 @@ export class DetailComponent implements OnInit {
       });
 
     });
+  }
+
+  handleRegisterCourse() {
+
+    if (this.shareService.getUserLogin.value) {
+      const taiKhoan = this.shareService.getUserLogin.value.taiKhoan;
+      const maKhoaHoc = this.course.maKhoaHoc;
+      this.dataService.post(`${environment.registerCourseHome}`, { taiKhoan, maKhoaHoc }, {
+        responseType: 'text',
+      }).subscribe({
+        next: (result) => {
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Bạn đã đăng ký thành công',
+            showConfirmButton: false,
+            timer: 2000
+          }).then(() => {
+            this.getInfoUser();
+
+          });
+        },
+        error: () => {
+          // this.redirectPage();
+        }
+      });
+
+
+    } else {
+      Swal.fire({
+        title: 'Vui lòng đăng nhập',
+        icon: 'info',
+        confirmButtonText: 'OK'
+      });
+    }
   }
 
   setOurNewsletters(params: any) {
@@ -106,6 +167,13 @@ export class DetailComponent implements OnInit {
     return array;
   }
 
+  getInfoUser() {
+    this.dataService
+      .post(`${environment.infoUserHome}`, null).subscribe((result: any) => {
+        const listCourse = [...result.chiTietKhoaHocGhiDanh];
+        this.shareService.setInfoUser = listCourse;
+      });
+  }
 
 }
 
